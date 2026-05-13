@@ -50,7 +50,7 @@ export function Header() {
           </Button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white" aria-label="Open menu">
+              <Button variant="outline" size="icon" className="md:hidden" aria-label="Open menu">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
