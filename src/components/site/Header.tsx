@@ -7,7 +7,7 @@ import logo from "@/assets/logo-itgxp.png";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
+  { to: "/services", label: "IT Managed Services" },
   { to: "/gxp", label: "GxP" },
   { to: "/offshore", label: "Offshore" },
   { to: "/about", label: "About" },
