@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { z } from "zod";
 import { ArrowRight, Server, Cloud, Bot, ShieldCheck, FileCheck, Database, Globe2, Users, Clock } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import appSupportImg from "@/assets/service-app-support.jpg";
@@ -8,7 +9,12 @@ import csvImg from "@/assets/gxp-csv.jpg";
 import part11Img from "@/assets/gxp-part11.jpg";
 import alcoaImg from "@/assets/gxp-alcoa.jpg";
 
+const servicesSearchSchema = z.object({
+  type: z.enum(["it", "gxp", "offshore"]).optional(),
+});
+
 export const Route = createFileRoute("/services")({
+  validateSearch: (search) => servicesSearchSchema.parse(search),
   component: ServicesPage,
   head: () => ({
     meta: [
@@ -129,39 +135,65 @@ function Section({
 }
 
 function ServicesPage() {
+  const { type } = Route.useSearch();
+
   return (
     <div>
       <PageHero
         eyebrow="Services"
-        title="Everything we do."
-        subtitle="Three integrated service lines — IT Managed Services, GxP Compliance, and Offshore Delivery — under one operating model."
+        title={
+          type === "it" 
+            ? "IT Managed Services" 
+            : type === "gxp" 
+            ? "GxP Compliance" 
+            : type === "offshore" 
+            ? "Offshore Delivery" 
+            : "Everything we do."
+        }
+        subtitle={type ? "Deep dive into our specialized expertise." : "Three integrated service lines — IT Managed Services, GxP Compliance, and Offshore Delivery — under one operating model."}
       />
 
-      <Section
-        eyebrow="IT Managed Services"
-        title="Enterprise IT, done right."
-        desc="Secure, governed, performance-driven."
-        to="/services"
-        services={itServices}
-      />
-
-      <div className="bg-gradient-soft border-y border-border">
+      {(!type || type === "it") && (
         <Section
-          eyebrow="GxP Compliance"
-          title="Compliance under scrutiny."
-          desc="Validation, data integrity, and inspection readiness."
-          to="/gxp"
-          services={gxpServices}
+          eyebrow="IT Managed Services"
+          title="Enterprise IT, done right."
+          desc="Secure, governed, performance-driven."
+          to="/services"
+          services={itServices}
         />
-      </div>
+      )}
 
-      <Section
-        eyebrow="Offshore Delivery"
-        title="Global reach. Local accountability."
-        desc="Governed offshore capacity with US oversight."
-        to="/offshore"
-        services={offshoreServices}
-      />
+      {(!type || type === "gxp") && (
+        <div className="bg-gradient-soft border-y border-border">
+          <Section
+            eyebrow="GxP Compliance"
+            title="Compliance under scrutiny."
+            desc="Validation, data integrity, and inspection readiness."
+            to="/gxp"
+            services={gxpServices}
+          />
+        </div>
+      )}
+
+      {(!type || type === "offshore") && (
+        <Section
+          eyebrow="Offshore Delivery"
+          title="Global reach. Local accountability."
+          desc="Governed offshore capacity with US oversight."
+          to="/offshore"
+          services={offshoreServices}
+        />
+      )}
+      {type && (
+        <div className="container mx-auto px-6 py-12 text-center border-t border-border mt-8">
+          <Link 
+            to="/services" 
+            className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
+          >
+            View all our services <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

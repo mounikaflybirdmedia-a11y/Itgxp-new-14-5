@@ -7,7 +7,7 @@ import logo from "@/assets/logo-itgxp.png";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "IT Managed Services" },
+  { to: "/services", label: "IT Managed Services", search: { type: "it" } },
   { to: "/gxp", label: "GxP" },
   { to: "/offshore", label: "Offshore" },
   { to: "/about", label: "About" },
@@ -29,13 +29,18 @@ export function Header() {
       </div>
       <div className="container mx-auto px-6 h-20 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center" aria-label="ITGxP home">
-          <img src={logo} alt="ITGxP — Enterprise IT. GxP Precision." className="h-16 w-auto" />
+          <img
+            src={logo}
+            alt="ITGxP — Enterprise IT. GxP Precision."
+            className="h-16 w-auto"
+          />
         </Link>
         <nav className="hidden md:flex items-center gap-1">
           {nav.map((n) => (
             <Link
               key={n.to}
               to={n.to}
+              search={"search" in n ? n.search : undefined}
               className="px-3 py-2 text-sm font-medium text-foreground/75 hover:text-primary transition-colors rounded-md"
               activeProps={{ className: "px-3 py-2 text-sm font-semibold text-primary rounded-md" }}
               activeOptions={{ exact: n.to === "/" }}
@@ -63,6 +68,7 @@ export function Header() {
                   <Link
                     key={n.to}
                     to={n.to}
+                    search={"search" in n ? n.search : undefined}
                     onClick={() => setOpen(false)}
                     className="px-3 py-3 text-base font-medium text-foreground/85 hover:text-primary hover:bg-accent rounded-md transition-colors"
                     activeProps={{ className: "px-3 py-3 text-base font-semibold text-primary bg-accent rounded-md" }}

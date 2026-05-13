@@ -19,18 +19,21 @@ const pillars = [
     title: "IT Managed Services",
     desc: "Resilient managed services for uptime, scale, and operational control.",
     to: "/services" as const,
+    search: { type: "it" as const },
   },
   {
     icon: ShieldCheck,
     title: "GxP Compliance",
     desc: "Validation, data integrity, and inspection readiness, done right.",
-    to: "/gxp" as const,
+    to: "/services" as const,
+    search: { type: "gxp" as const },
   },
   {
     icon: Globe2,
     title: "Offshore Delivery",
     desc: "Governed offshore capacity with US oversight and 24/7 coverage.",
-    to: "/offshore" as const,
+    to: "/services" as const,
+    search: { type: "offshore" as const },
   },
 ];
 
@@ -87,6 +90,7 @@ function Index() {
             <Link
               key={p.title}
               to={p.to}
+              search={"search" in p ? p.search : undefined}
               className="group bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-soft hover:border-primary/40 transition-all"
             >
               <div className="h-12 w-12 rounded-xl bg-primary/15 grid place-items-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
@@ -111,7 +115,7 @@ function Index() {
             <h2 className="mt-4 text-3xl lg:text-4xl font-bold tracking-tight">Let's talk.</h2>
             <p className="mt-3 text-white/85">A practical next step within one business day.</p>
             <Button asChild size="lg" variant="secondary" className="mt-8 rounded-full px-8">
-              <Link to="/services">Get in touch <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/contact">Get in touch <ArrowRight className="h-4 w-4" /></Link>
             </Button>
           </div>
         </div>

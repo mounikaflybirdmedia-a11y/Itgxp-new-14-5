@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import favicon from "../assets/logo-itgxp.png?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
@@ -81,13 +82,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Enterprise IT Managed Services and GxP Compliance for life sciences, healthcare and regulated enterprises. FDA, EMA, GAMP 5, 21 CFR Part 11." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "ITGxP — Enterprise IT & GxP Compliance for Regulated Industries" },
       { name: "twitter:description", content: "Enterprise IT Managed Services and GxP Compliance for life sciences, healthcare and regulated enterprises. FDA, EMA, GAMP 5, 21 CFR Part 11." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/97841553-7fe7-4d12-bde0-cfc573a64cd8/id-preview-39949a68--4ee35da2-edb0-4738-8e96-f2593a7c761c.lovable.app-1778662971179.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/97841553-7fe7-4d12-bde0-cfc573a64cd8/id-preview-39949a68--4ee35da2-edb0-4738-8e96-f2593a7c761c.lovable.app-1778662971179.png" },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: favicon,
+      },
       {
         rel: "stylesheet",
         href: appCss,

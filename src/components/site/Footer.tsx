@@ -6,7 +6,11 @@ export function Footer() {
     <footer className="bg-brand-deep text-white/85 mt-24">
       <div className="container mx-auto px-6 py-16 grid gap-12 md:grid-cols-4">
         <div>
-          <img src={logo} alt="ITGxP" className="h-16 w-16 rounded-lg" />
+          <img
+            src={logo}
+            alt="ITGxP"
+            className="h-16 w-16 rounded-lg"
+          />
           <p className="mt-4 text-sm leading-relaxed text-white/70">
             Enterprise IT Managed Services and GxP Compliance for regulated, audit-sensitive environments.
           </p>
@@ -15,8 +19,8 @@ export function Footer() {
           <h4 className="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Services</h4>
           <ul className="space-y-2 text-sm">
             <li><Link to="/services" className="hover:text-primary-soft">IT Managed Services</Link></li>
-            <li><Link to="/gxp" className="hover:text-primary-soft">GxP Compliance & CSV</Link></li>
-            <li><Link to="/offshore" className="hover:text-primary-soft">Offshore Delivery</Link></li>
+            <li><Link to="/services" search={{ type: "gxp" }} className="hover:text-primary-soft">GxP Compliance & CSV</Link></li>
+            <li><Link to="/services" search={{ type: "offshore" }} className="hover:text-primary-soft">Offshore Delivery</Link></li>
           </ul>
         </div>
         <div>
